@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - EduPay 2026</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background Elements -->
+    <div class="bg-gradient"></div>
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <!-- Login Container -->
+    <div class="login-container">
+        <!-- Left Side - Brand -->
+        <div class="login-brand">
+            <div class="brand-logo animate__animated animate__fadeInDown">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h1 class="brand-title animate__animated animate__fadeInUp">EduPay 2026</h1>
+            <p class="brand-subtitle animate__animated animate__fadeInUp">Gestão Financeira Escolar Premium</p>
+            
+            <div class="brand-features animate__animated animate__fadeInUp">
+                <div class="feature">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>100% Seguro</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-bolt"></i>
+                    <span>Ultra Rápido</span>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Profissional</span>
+                </div>
+            </div>
+
+            <div class="social-proof animate__animated animate__fadeInUp">
+                <p>Confiado por 350+ instituições educacionais</p>
+                <div class="avatars">
+                    <img src="https://i.pravatar.cc/40?img=1" alt="">
+                    <img src="https://i.pravatar.cc/40?img=2" alt="">
+                    <img src="https://i.pravatar.cc/40?img=3" alt="">
+                    <img src="https://i.pravatar.cc/40?img=4" alt="">
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side - Form -->
+        <div class="login-form-container">
+            <div class="login-form animate__animated animate__fadeInRight">
+                <div class="form-header">
+                    <h2>Bem-vindo de volta</h2>
+                    <p>Aceda à sua conta administrativo</p>
+                </div>
+
+                <form id="loginForm" class="form">
+                    <!-- Email Input -->
+                    <div class="form-group">
+                        <label for="email" class="form-label">
+                            <i class="fas fa-envelope"></i> Email
+                        </label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            class="form-input" 
+                            placeholder="admin@escola.pt"
+                            required
+                        >
+                        <span class="input-error"></span>
+                    </div>
+
+                    <!-- Password Input -->
+                    <div class="form-group">
+                        <label for="password" class="form-label">
+                            <i class="fas fa-lock"></i> Palavra-passe
+                        </label>
+                        <div class="password-input-wrapper">
+                            <input 
+                                type="password" 
+                                id="password" 
+                                class="form-input" 
+                                placeholder="••••••••"
+                                required
+                            >
+                            <button type="button" class="toggle-password" onclick="togglePassword()">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <span class="input-error"></span>
+                    </div>
+
+                    <!-- Remember & Forgot -->
+                    <div class="form-footer">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="remember">
+                            <span>Lembrar-me</span>
+                        </label>
+                        <a href="#" class="forgot-link">Esqueci a palavra-passe</a>
+                    </div>
+
+                    <!-- Login Button -->
+                    <button type="submit" class="btn-login">
+                        <span class="btn-text">Entrar</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+
+                    <!-- Demo Button -->
+                    <button type="button" class="btn-demo" onclick="loginAsDemo()">
+                        <i class="fas fa-play-circle"></i> Acesso Demo
+                    </button>
+                </form>
+
+                <!-- Divider -->
+                <div class="form-divider">
+                    <span>ou</span>
+                </div>
+
+                <!-- Alternative Login -->
+                <div class="alternative-login">
+                    <button type="button" class="btn-alternative" onclick="showAlert('Google Login em desenvolvimento')">
+                        <i class="fab fa-google"></i> Google
+                    </button>
+                    <button type="button" class="btn-alternative" onclick="showAlert('Microsoft Login em desenvolvimento')">
+                        <i class="fab fa-microsoft"></i> Microsoft
+                    </button>
+                </div>
+
+                <!-- Sign Up Link -->
+                <div class="signup-link">
+                    <p>Não tem conta? <a href="#" onclick="showAlert('Registo em desenvolvimento')">Registar-se</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+    <script src="js/auth.js"></script>
+    <script>
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleBtn = document.querySelector('.toggle-password');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
+            } else {
+                passwordInput.type = 'password';
+                toggleBtn.innerHTML = '<i class="fas fa-eye"></i>';
+            }
+        }
+
+        function loginAsDemo() {
+            document.getElementById('email').value = 'admin@edupay.pt';
+            document.getElementById('password').value = 'admin123';
+            document.getElementById('loginForm').submit();
+        }
+
+        function showAlert(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (email && password) {
+                // Simular autenticação
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('userEmail', email);
+                localStorage.setItem('userName', 'Administrador');
+                
+                showAlert('Login realizado com sucesso!');
+                setTimeout(() => {
+                    window.location.href = 'dashboard.html';
+                }, 1000);
+            }
+        });
+    </script>
+</body>
+</html>
