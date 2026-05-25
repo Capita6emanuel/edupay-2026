@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Alunos - EduPay 2026</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/students.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>EduPay</span>
+            </div>
+            <button class="sidebar-close" id="sidebar-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="students.html" class="nav-item active">
+                <i class="fas fa-users"></i>
+                <span>Alunos</span>
+            </a>
+            <a href="payments.html" class="nav-item">
+                <i class="fas fa-money-bill-wave"></i>
+                <span>Pagamentos</span>
+            </a>
+            <a href="reports.html" class="nav-item">
+                <i class="fas fa-file-chart-line"></i>
+                <span>Relatórios</span>
+            </a>
+            <a href="settings.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Configurações</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button onclick="logout()" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Sair</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="sidebar-toggle" id="sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="header-title">
+                    <h1>Gestão de Alunos</h1>
+                    <p>Gerencie os alunos da sua instituição</p>
+                </div>
+            </div>
+
+            <div class="header-right">
+                <button class="btn-primary" id="add-student-btn">
+                    <i class="fas fa-plus"></i> Adicionar Aluno
+                </button>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <div class="content-container">
+            <!-- Filters -->
+            <section class="filters-section">
+                <div class="filter-group">
+                    <input type="text" id="student-search" placeholder="Pesquisar aluno..." class="filter-input">
+                </div>
+                <div class="filter-group">
+                    <select id="status-filter" class="filter-select">
+                        <option value="all">Todos os Status</option>
+                        <option value="ativo">Ativo</option>
+                        <option value="inativo">Inativo</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <select id="sort-by" class="filter-select">
+                        <option value="name">Ordenar por Nome</option>
+                        <option value="balance">Ordenar por Saldo</option>
+                        <option value="date">Ordenar por Data</option>
+                    </select>
+                </div>
+            </section>
+
+            <!-- Students Table -->
+            <section class="table-section">
+                <div class="table-card">
+                    <div class="card-header">
+                        <h2>Alunos Inscritos</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="students-table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                    <th>Saldo</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Students will be rendered here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Student Modal -->
+    <div id="student-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Adicionar Novo Aluno</h2>
+                <button class="close-modal" onclick="closeModal()">&times;</button>
+            </div>
+            <form id="student-form" class="modal-body">
+                <input type="hidden" id="student-id">
+                
+                <div class="form-group">
+                    <label for="student-name">Nome Completo *</label>
+                    <input type="text" id="student-name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="student-email">Email *</label>
+                    <input type="email" id="student-email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="student-phone">Telefone *</label>
+                    <input type="tel" id="student-phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="student-status">Status</label>
+                    <select id="student-status">
+                        <option value="ativo">Ativo</option>
+                        <option value="inativo">Inativo</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="student-fee">Mensalidade (€)</label>
+                    <input type="number" id="student-fee" step="0.01" value="150">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
+                    <button type="button" class="btn-primary" id="save-student-btn">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/students.js"></script>
+</body>
+</html>
