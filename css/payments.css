@@ -1,0 +1,51 @@
+/* ====================================
+   EDUPAY 2026 - PAYMENTS PAGE STYLES
+   ==================================== */
+
+/* Reuse styles from students.css */
+@import url('students.css');
+
+/* Payment-specific styles */
+.payment-reference {
+    background: var(--bg-primary);
+    border: 2px dashed var(--primary-color);
+    padding: var(--spacing-lg);
+    border-radius: 8px;
+    margin: var(--spacing-lg) 0;
+    text-align: center;
+}
+
+.reference-code {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    font-family: monospace;
+    margin-bottom: var(--spacing-sm);
+}
+
+.reference-label {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.copy-btn {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all var(--transition);
+}
+
+.copy-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-send {
+    background: rgba(34, 197, 94, 0.1) !important;
+    color: var(--success-color) !important;
+}
